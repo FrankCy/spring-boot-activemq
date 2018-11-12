@@ -32,6 +32,20 @@ public class Producer {
     private Queue queue;
 
     /**
+     * @description：创建send
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2018/11/12 下午7:56
+     * @mofified By:
+     */
+    public void send() {
+        System.out.println(DateUtils.getDate() + " ： 客户端创建的队列");
+        this.jmsMessagingTemplate.convertAndSend(this.queue, "hi,客户端创建的队列");
+    }
+
+
+    /**
      * @description：每3s执行1次
      * @version 1.0
      * @author: Yang.Chang
@@ -39,10 +53,10 @@ public class Producer {
      * @date: 2018/11/12 下午7:56
      * @mofified By:
      */
-//    @Scheduled(fixedDelay = 3000)
-    public void send() {
-        System.out.println(DateUtils.getDate() + " ： 我是com.cy.sb.activemq.queue下的一个队列");
-        this.jmsMessagingTemplate.convertAndSend(this.queue, "hi,activeMQ");
+    @Scheduled(fixedDelay = 3000)
+    public void ScheduledThree() {
+        System.out.println(DateUtils.getDate() + " ： 每隔3秒自动创建的队列");
+        this.jmsMessagingTemplate.convertAndSend(this.queue, "hi,每隔3秒自动创建的队列");
     }
 
 }
